@@ -6,17 +6,18 @@
     <title>Zapatero Caracas | Sneaker Art & AI Lab</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        /* Variables de color basadas en tu logo */
+        /* Variables de color */
         :root {
-            --fondo: #050505; /* Negro más puro */
+            --fondo: #050505;
             --fondo-tarjeta: #111111;
             --texto: #ffffff;
             --gris: #a0a0a0;
             --neon-morado: #9333ea;
             --neon-rosa: #db2777;
-            --neon-amarillo: #eab308;
-            --degradado: linear-gradient(45deg, #9333ea, #db2777, #eab308);
-            --whatsapp: #25D366;
+            --degradado-neon: linear-gradient(45deg, #9333ea, #db2777);
+            --instagram-gradiente: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            --facebook: #1877F2;
+            --facebook-dark: #262626;
         }
 
         * {
@@ -24,6 +25,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Montserrat', sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -32,7 +34,7 @@
             display: flex;
             justify-content: center;
             min-height: 100vh;
-            padding: 20px 10px;
+            padding: 20px 15px;
             overflow-x: hidden;
         }
 
@@ -52,10 +54,10 @@
             border-radius: 50%;
             filter: blur(100px);
             z-index: -1;
-            opacity: 0.2;
+            opacity: 0.25;
         }
         .glow-1 { top: 0; left: -50px; background: var(--neon-morado); }
-        .glow-2 { top: 300px; right: -50px; background: var(--neon-rosa); }
+        .glow-2 { top: 400px; right: -50px; background: var(--neon-rosa); }
 
         /* Foto de perfil */
         .profile-container {
@@ -70,8 +72,8 @@
             border-radius: 50%;
             border: 4px solid var(--fondo);
             outline: 4px solid var(--neon-morado);
-            object-fit: cover;
-            background-color: #000;
+            object-fit: cover; 
+            background-color: #000; 
         }
 
         h1 {
@@ -79,7 +81,7 @@
             font-weight: 900;
             margin-bottom: 5px;
             letter-spacing: -0.5px;
-            background: var(--degradado);
+            background: var(--degradado-neon);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -90,9 +92,10 @@
             margin-bottom: 25px;
             font-weight: 400;
             padding: 0 15px;
+            line-height: 1.4;
         }
 
-        /* Sección Portafolio (NUEVO) */
+        /* Sección Portafolio */
         .portfolio-section {
             margin-bottom: 30px;
             text-align: left;
@@ -130,7 +133,7 @@
         }
 
         .portfolio-item:active img {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         /* Botones de Acción (CTA) */
@@ -151,7 +154,7 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            transition: transform 0.1s;
+            transition: transform 0.2s ease, opacity 0.2s ease;
             border: none;
             cursor: pointer;
             width: 100%;
@@ -159,19 +162,36 @@
 
         .btn:active { transform: scale(0.97); }
 
-        .btn-whatsapp {
-            background-color: var(--whatsapp);
-            color: #000;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-        }
-
-        .btn-instagram {
+        /* 1. Seguir Instagram */
+        .btn-ig-follow {
             background: transparent;
             color: white;
-            border: 1px solid var(--neon-morado);
+            border: 2px solid var(--neon-morado);
+            box-shadow: 0 0 10px rgba(147, 51, 234, 0.2);
         }
 
-        /* Formulario VIP (NUEVO) */
+        /* 2. DM Instagram */
+        .btn-ig-dm {
+            background: var(--instagram-gradiente);
+            color: white;
+            box-shadow: 0 4px 15px rgba(220, 39, 67, 0.3);
+        }
+
+        /* 3. Seguir Facebook */
+        .btn-fb-follow {
+            background: var(--facebook);
+            color: white;
+            box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3);
+        }
+
+        /* 4. DM Facebook */
+        .btn-fb-dm {
+            background: var(--facebook-dark);
+            color: white;
+            border: 1px solid #444;
+        }
+
+        /* Formulario VIP */
         .vip-box {
             background: var(--fondo-tarjeta);
             padding: 20px;
@@ -184,13 +204,14 @@
         .vip-box h3 {
             font-size: 15px;
             margin-bottom: 8px;
-            color: var(--neon-amarillo);
+            color: #eab308; /* Amarillo neón */
         }
 
         .vip-box p {
             font-size: 12px;
             color: var(--gris);
             margin-bottom: 12px;
+            line-height: 1.3;
         }
 
         .input-group {
@@ -214,14 +235,18 @@
         }
 
         .btn-vip {
-            background: var(--degradado);
+            background: var(--degradado-neon);
             color: white;
             padding: 12px 15px;
             border-radius: 8px;
             font-weight: bold;
             border: none;
             font-size: 13px;
+            cursor: pointer;
+            transition: opacity 0.2s;
         }
+
+        .btn-vip:active { opacity: 0.8; }
 
         /* Footer */
         .footer {
@@ -248,7 +273,7 @@
 
     <div class="container fade-in">
         
-        <!-- FOTO DE PERFIL: Reemplaza el src con el enlace de tu logo circular -->
+        <!-- Foto de Perfil -->
         <div class="profile-container">
             <img src="https://i.postimg.cc/6Q9z9Z5b/zapatero-logo.jpg" alt="Zapatero Caracas Logo" class="profile-img">
         </div>
@@ -256,41 +281,55 @@
         <h1>Zapatero Caracas</h1>
         <p class="subtitulo">El futuro de la cultura sneaker creado con Inteligencia Artificial. Arte, 3D y diseño.</p>
 
-        <!-- SECCIÓN NUEVA: PORTAFOLIO -->
+        <!-- Portafolio -->
         <div class="portfolio-section">
             <div class="portfolio-title">
                 <span>🔥</span> Portafolio IA Destacado
             </div>
             <div class="portfolio-grid">
-                <!-- Puedes cambiar estas imágenes por tus propios diseños -->
                 <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=400&auto=format&fit=crop" alt="Diseño IA 1">
+                    <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=400&auto=format&fit=crop" alt="Sneaker IA 1">
                 </div>
                 <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=400&auto=format&fit=crop" alt="Diseño IA 2">
+                    <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=400&auto=format&fit=crop" alt="Sneaker IA 2">
                 </div>
             </div>
         </div>
 
-        <!-- BOTONES DE ACCIÓN -->
+        <!-- Botones de Acción (CTA) -->
         <div class="cta-group">
-            <!-- Cambia el número de WhatsApp -->
-            <a href="https://wa.me/584120000000?text=Hola%20Zapatero%20Caracas,%20quiero%20un%20dise%C3%B1o%20con%20IA" target="_blank" class="btn btn-whatsapp">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.126-.074-.271-.085-.579-.185-.99-.36-1.749-.756-2.891-2.531-2.98-2.65-.089-.119-.713-.949-.713-1.814s.452-1.29.613-1.467c.162-.178.352-.223.469-.223.117 0 .234.002.335.007.108.005.253-.041.396.301.143.342.488 1.193.532 1.279.044.085.073.185.015.301-.058.116-.087.187-.174.288-.087.101-.183.229-.262.315-.096.104-.196.217-.084.425.112.208.498.82 1.068 1.329.733.653 1.348.856 1.541.951.193.096.306.08.421-.048.115-.128.486-.565.616-.759.13-.193.26-.16.439-.096.179.064 1.131.533 1.326.63.195.097.325.145.372.227.047.082.047.475-.097.88z"/></svg>
+            
+            <!-- 1. Seguir en Instagram -->
+            <a href="https://instagram.com/zapaterocaracas" target="_blank" class="btn btn-ig-follow">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                Seguir en Instagram
+            </a>
+
+            <!-- 2. DM en Instagram -->
+            <a href="https://ig.me/m/zapaterocaracas" target="_blank" class="btn btn-ig-dm">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                Enviar DM en Instagram
             </a>
             
-            <a href="https://instagram.com/zapaterocaracas" target="_blank" class="btn btn-instagram">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                Seguir en Instagram
+            <!-- 3. Seguir en Facebook -->
+            <a href="https://www.facebook.com/zapaterocaracas" target="_blank" class="btn btn-fb-follow">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                Seguir en Facebook
+            </a>
+
+            <!-- 4. DM en Facebook -->
+            <a href="https://m.me/zapaterocaracas" target="_blank" class="btn btn-fb-dm">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.145 2 11.259c0 2.91 1.455 5.504 3.738 7.19V22l3.405-1.863c.907.251 1.865.385 2.857.385 5.523 0 10-4.145 10-9.259S17.523 2 12 2zm1.066 12.404l-2.55-2.71-4.977 2.71 5.478-5.81 2.617 2.71 4.91-2.71-5.478 5.81z"/></svg>
+                Enviar DM en Facebook
             </a>
         </div>
 
-        <!-- SECCIÓN NUEVA: CAPTACIÓN DE LEADS (LISTA VIP) -->
+        <!-- Formulario VIP -->
         <div class="vip-box">
             <h3>🚀 Únete a la Lista VIP</h3>
             <p>Recibe antes que nadie nuestros drops de Sneaker Art generados con IA.</p>
+            <!-- CAMBIA "tucorreo@ejemplo.com" POR TU CORREO REAL -->
             <form action="https://formsubmit.co/tucorreo@ejemplo.com" method="POST" class="input-group">
-                <!-- CAMBIA "tucorreo@ejemplo.com" por tu correo real para recibir los mensajes -->
                 <input type="email" name="email" placeholder="Tu correo electrónico" required>
                 <button type="submit" class="btn-vip">Unirme</button>
             </form>
@@ -301,11 +340,18 @@
         </div>
     </div>
 
+    <!-- Script para Feedback Táctil -->
     <script>
-        // Pequeña animación táctil para móviles
-        document.querySelectorAll('.btn, .portfolio-item').forEach(el => {
-            el.addEventListener('touchstart', () => el.style.opacity = '0.8', {passive: true});
-            el.addEventListener('touchend', () => el.style.opacity = '1', {passive: true});
+        document.querySelectorAll('.btn, .portfolio-item, .btn-vip').forEach(el => {
+            el.addEventListener('touchstart', () => {
+                el.style.opacity = '0.7';
+                el.style.transform = 'scale(0.97)';
+            }, {passive: true});
+            
+            el.addEventListener('touchend', () => {
+                el.style.opacity = '1';
+                el.style.transform = 'scale(1)';
+            }, {passive: true});
         });
     </script>
 </body>
