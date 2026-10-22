@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zapatero Caracas | Sneaker Art & AI Lab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* Variables de color basadas en tu logo */
+        :root {
+            --fondo: #050505; /* Negro más puro */
+            --fondo-tarjeta: #111111;
+            --texto: #ffffff;
+            --gris: #a0a0a0;
+            --neon-morado: #9333ea;
+            --neon-rosa: #db2777;
+            --neon-amarillo: #eab308;
+            --degradado: linear-gradient(45deg, #9333ea, #db2777, #eab308);
+            --whatsapp: #25D366;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--fondo);
+            color: var(--texto);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px 10px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Efecto de luces de fondo */
+        .glow-1, .glow-2 {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+            opacity: 0.2;
+        }
+        .glow-1 { top: 0; left: -50px; background: var(--neon-morado); }
+        .glow-2 { top: 300px; right: -50px; background: var(--neon-rosa); }
+
+        /* Foto de perfil */
+        .profile-container {
+            margin-bottom: 20px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .profile-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 4px solid var(--fondo);
+            outline: 4px solid var(--neon-morado);
+            object-fit: cover;
+            background-color: #000;
+        }
+
+        h1 {
+            font-size: 26px;
+            font-weight: 900;
+            margin-bottom: 5px;
+            letter-spacing: -0.5px;
+            background: var(--degradado);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitulo {
+            font-size: 14px;
+            color: var(--gris);
+            margin-bottom: 25px;
+            font-weight: 400;
+            padding: 0 15px;
+        }
+
+        /* Sección Portafolio (NUEVO) */
+        .portfolio-section {
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .portfolio-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .portfolio-item {
+            background: var(--fondo-tarjeta);
+            border-radius: 12px;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            border: 1px solid #333;
+            position: relative;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:active img {
+            transform: scale(1.1);
+        }
+
+        /* Botones de Acción (CTA) */
+        .cta-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            padding: 16px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: transform 0.1s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn:active { transform: scale(0.97); }
+
+        .btn-whatsapp {
+            background-color: var(--whatsapp);
+            color: #000;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-instagram {
+            background: transparent;
+            color: white;
+            border: 1px solid var(--neon-morado);
+        }
+
+        /* Formulario VIP (NUEVO) */
+        .vip-box {
+            background: var(--fondo-tarjeta);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid #333;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .vip-box h3 {
+            font-size: 15px;
+            margin-bottom: 8px;
+            color: var(--neon-amarillo);
+        }
+
+        .vip-box p {
+            font-size: 12px;
+            color: var(--gris);
+            margin-bottom: 12px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .input-group input {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            background: #000;
+            color: white;
+            font-size: 13px;
+            outline: none;
+        }
+
+        .input-group input:focus {
+            border-color: var(--neon-morado);
+        }
+
+        .btn-vip {
+            background: var(--degradado);
+            color: white;
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            border: none;
+            font-size: 13px;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 30px;
+            font-size: 11px;
+            color: #555;
+            padding-bottom: 20px;
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glow-1"></div>
+    <div class="glow-2"></div>
+
+    <div class="container fade-in">
+        
+        <!-- FOTO DE PERFIL: Reemplaza el src con el enlace de tu logo circular -->
+        <div class="profile-container">
+            <img src="https://i.postimg.cc/6Q9z9Z5b/zapatero-logo.jpg" alt="Zapatero Caracas Logo" class="profile-img">
+        </div>
+
+        <h1>Zapatero Caracas</h1>
+        <p class="subtitulo">El futuro de la cultura sneaker creado con Inteligencia Artificial. Arte, 3D y diseño.</p>
+
+        <!-- SECCIÓN NUEVA: PORTAFOLIO -->
+        <div class="portfolio-section">
+            <div class="portfolio-title">
+                <span>🔥</span> Portafolio IA Destacado
+            </div>
+            <div class="portfolio-grid">
+                <!-- Puedes cambiar estas imágenes por tus propios diseños -->
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=400&auto=format&fit=crop" alt="Diseño IA 1">
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=400&auto=format&fit=crop" alt="Diseño IA 2">
+                </div>
+            </div>
+        </div>
+
+        <!-- BOTONES DE ACCIÓN -->
+        <div class="cta-group">
+            <!-- Cambia el número de WhatsApp -->
+            <a href="https://wa.me/584120000000?text=Hola%20Zapatero%20Caracas,%20quiero%20un%20dise%C3%B1o%20con%20IA" target="_blank" class="btn btn-whatsapp">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.126-.074-.271-.085-.579-.185-.99-.36-1.749-.756-2.891-2.531-2.98-2.65-.089-.119-.713-.949-.713-1.814s.452-1.29.613-1.467c.162-.178.352-.223.469-.223.117 0 .234.002.335.007.108.005.253-.041.396.301.143.342.488 1.193.532 1.279.044.085.073.185.015.301-.058.116-.087.187-.174.288-.087.101-.183.229-.262.315-.096.104-.196.217-.084.425.112.208.498.82 1.068 1.329.733.653 1.348.856 1.541.951.193.096.306.08.421-.048.115-.128.486-.565.616-.759.13-.193.26-.16.439-.096.179.064 1.131.533 1.326.63.195.097.325.145.372.227.047.082.047.475-.097.88z"/></svg>
+            </a>
+            
+            <a href="https://instagram.com/zapaterocaracas" target="_blank" class="btn btn-instagram">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                Seguir en Instagram
+            </a>
+        </div>
+
+        <!-- SECCIÓN NUEVA: CAPTACIÓN DE LEADS (LISTA VIP) -->
+        <div class="vip-box">
+            <h3>🚀 Únete a la Lista VIP</h3>
+            <p>Recibe antes que nadie nuestros drops de Sneaker Art generados con IA.</p>
+            <form action="https://formsubmit.co/tucorreo@ejemplo.com" method="POST" class="input-group">
+                <!-- CAMBIA "tucorreo@ejemplo.com" por tu correo real para recibir los mensajes -->
+                <input type="email" name="email" placeholder="Tu correo electrónico" required>
+                <button type="submit" class="btn-vip">Unirme</button>
+            </form>
+        </div>
+
+        <div class="footer">
+            &copy; 2024 Zapatero Caracas | AI Lab & Sneaker Art.
+        </div>
+    </div>
+
+    <script>
+        // Pequeña animación táctil para móviles
+        document.querySelectorAll('.btn, .portfolio-item').forEach(el => {
+            el.addEventListener('touchstart', () => el.style.opacity = '0.8', {passive: true});
+            el.addEventListener('touchend', () => el.style.opacity = '1', {passive: true});
+        });
+    </script>
+</body>
+</html>
